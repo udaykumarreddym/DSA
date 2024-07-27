@@ -4,7 +4,8 @@ public class Array{
     public static void main(String[] args){
         //selectionsort();
         //bubblesort();
-        insertionsort();
+        //insertionsort();
+        mergeSort();
     }
     public static void bubblesort(){
         Scanner sc = new Scanner(System.in);
@@ -92,5 +93,74 @@ public class Array{
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
+    }
+    public static void mergeSort(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("Initial array:");
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+
+        mergeSort1(arr,0,arr.length-1);
+        
+        System.out.println("\nSorted array:");
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+
+    }
+    public static void mergeSort1(int[] arr,int l,int r){
+        if(l==r){
+            return;
+        }
+        int m = (l+r)/2;
+        mergeSort1(arr,l,m);
+        mergeSort1(arr,m+1,r);
+        merge(arr,l,m,r);
+        
+    }
+    public static void merge(int[] arr, int l, int m, int r){
+        
+        int n1 = m - l + 1;
+        int n2 = r - m;
+        
+        int[] leftArray = new int[n1];
+        int[] rightArray = new int[n2];
+        
+        System.arraycopy(arr, l, leftArray, 0, n1);
+        System.arraycopy(arr, m + 1, rightArray, 0, n2);
+        
+        int i = 0, j = 0;
+        int k = l;
+
+        while (i < n1 && j < n2) {
+            if (leftArray[i] <= rightArray[j]) {
+                arr[k] = leftArray[i];
+                i++;
+            } else {
+                arr[k] = rightArray[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            arr[k] = leftArray[i];
+            i++;
+            k++;
+        }
+        
+        while (j < n2) {
+            arr[k] = rightArray[j];
+            j++;
+            k++;
+        }
     }
 }
