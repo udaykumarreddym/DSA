@@ -5,8 +5,11 @@ public class Array{
         //selectionsort();
         //bubblesort();
         //insertionsort();
-        mergeSort();
+        //mergeSort();
+        quicksort();
     }
+
+
     public static void bubblesort(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter array size:");
@@ -37,6 +40,8 @@ public class Array{
             System.out.print(arr[i]+" ");
         }
     }
+
+
     public static void selectionsort(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter array size:");
@@ -64,6 +69,8 @@ public class Array{
             System.out.print(arr[i]+" ");
         }
     }
+
+
     public static void insertionsort(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter array size:");
@@ -89,11 +96,15 @@ public class Array{
             System.out.print(arr[i]+" ");
         }
     }
+
+
     public static void swap(int[] arr,int a,int b){
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
     }
+
+
     public static void mergeSort(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter array size:");
@@ -114,7 +125,6 @@ public class Array{
         for(int i=0;i<arr.length;i++){
             System.out.print(arr[i]+" ");
         }
-
     }
     public static void mergeSort1(int[] arr,int l,int r){
         if(l==r){
@@ -162,5 +172,51 @@ public class Array{
             j++;
             k++;
         }
+    }
+    public static void quicksort(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("Initial array:");
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+
+        quickSort1(arr,0,arr.length-1);
+
+        System.out.println("\nSorted array:");
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    public static void quickSort1(int[] arr, int low, int high){
+        if(low<high){
+            int pIndex = partition(arr,low,high);
+            quickSort1(arr, low, pIndex-1);
+            quickSort1(arr, pIndex+1, high);
+        }
+    }
+    public static int partition(int[] arr,int low,int high){
+        int pivot = arr[low];
+        int i = low;
+        int j = high;
+        while(i<j){
+            while(arr[i] <= pivot && i <= high-1){
+                i++;
+            }
+            while(arr[j] > pivot && j >= low){
+                j--;
+            }
+            if(i<j){
+                swap(arr,i,j);
+            }
+        }
+        swap(arr,low,j);
+        return j;
     }
 }
