@@ -8,7 +8,8 @@ public class Array{
         //mergeSort();
         //quicksort();
         //largestElement();
-        secondLargest();
+        //secondLargest();
+        sortedArray();
     }
 
 
@@ -267,6 +268,29 @@ public class Array{
         }
         else{
             System.out.println("Second largest element:"+secmax);
+        }
+    }
+
+    public static void sortedArray(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int flag = 0;
+        for(int i = 1; i < arr.length-1; i++){
+            if(arr[i] > arr[i+1]){
+                flag += 1;
+            }
+        }
+        if(flag > 1){
+            System.out.println("Not sorted");
+        }
+        else{
+            System.out.println("Sorted");
         }
     }
 }
