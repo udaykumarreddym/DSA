@@ -6,7 +6,9 @@ public class Array{
         //bubblesort();
         //insertionsort();
         //mergeSort();
-        quicksort();
+        //quicksort();
+        //largestElement();
+        secondLargest();
     }
 
 
@@ -218,5 +220,53 @@ public class Array{
         }
         swap(arr,low,j);
         return j;
+    }
+
+
+    public static void largestElement(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int max = Integer.MIN_VALUE;
+        for(int i = 1; i < arr.length; i++){
+            if(arr[i]>max){
+                max = arr[i];
+            }
+        }
+        System.out.println("Maximun element is "+max);
+    }
+    
+
+    public static void secondLargest(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int max = Integer.MIN_VALUE;
+        int secmax = Integer.MIN_VALUE;
+        for(int i = 1; i < arr.length; i++){
+            if(arr[i]>max){
+                secmax = max;
+                max = arr[i];
+            }
+            if(arr[i]>secmax && arr[i] != max){
+                secmax = arr[i];
+            }
+        }
+        if(secmax == Integer.MIN_VALUE){
+            System.out.println("-1");
+        }
+        else{
+            System.out.println("Second largest element:"+secmax);
+        }
     }
 }
