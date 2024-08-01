@@ -9,7 +9,10 @@ public class Array{
         //quicksort();
         //largestElement();
         //secondLargest();
-        sortedArray();
+        //sortedArray();
+        //removeduplicates();
+        //rotateLeftK();
+        rotateRightK();
     }
 
 
@@ -281,8 +284,8 @@ public class Array{
             arr[i] = sc.nextInt();
         }
         int flag = 0;
-        for(int i = 1; i < arr.length-1; i++){
-            if(arr[i] > arr[i+1]){
+        for(int i = 1; i < n; i++){
+            if(arr[i] > arr[(i+1)%n]){
                 flag += 1;
             }
         }
@@ -293,4 +296,75 @@ public class Array{
             System.out.println("Sorted");
         }
     }
+
+    public static void removeduplicates(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int i = 0;
+        for(int j = 1; j < arr.length; j++){
+            if(arr[i] != arr[j]){
+                arr[i+1] = arr[j];
+                i++;
+            }
+        }
+        System.out.println("After removing duplicates");
+        for(int j = 0; j < i; j++){
+            System.out.print(arr[j]+" ");
+        }
+    }
+
+    public static void rotateLeftK(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.print("Enter K value:");
+        int k = sc.nextInt();
+        for(int i = 1; i <= k; i++){
+            int temp = arr[0];
+            for(int j = 0; j < arr.length-1; j++){
+                arr[j] = arr[j+1];
+            }
+            arr[arr.length-1] = temp;
+        }
+        System.out.println("After rotating left:");
+        for(int j = 0; j < arr.length; j++){
+            System.out.print(arr[j]+" ");
+        }
+    }
+
+    public static void rotateRightK(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.print("Enter K value:");
+        int k = sc.nextInt();
+        for(int i = 1; i <= k; i++){
+            int temp = arr[arr.length-1];
+            for(int j = arr.length-2; j >= 0; j--){
+                arr[j+1] =  arr[j];
+            }
+            arr[0] = temp;
+        }
+        System.out.println("After rotating right:");
+        for(int j = 0; j < arr.length; j++){
+            System.out.print(arr[j]+" ");
+        }
+    }
+    
 }
