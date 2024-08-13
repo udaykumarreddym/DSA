@@ -7,12 +7,13 @@ public class Array{
         //insertionsort();
         //mergeSort();
         //quicksort();
-        //largestElement();
-        //secondLargest();
         //sortedArray();
         //removeduplicates();
         //rotateLeftK();
-        rotateRightK();
+        //rotateRightK();
+        //unionofSorted();
+        //majorityBrute();
+        mooreVoting();
     }
 
 
@@ -227,53 +228,6 @@ public class Array{
     }
 
 
-    public static void largestElement(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
-        int max = Integer.MIN_VALUE;
-        for(int i = 1; i < arr.length; i++){
-            if(arr[i]>max){
-                max = arr[i];
-            }
-        }
-        System.out.println("Maximun element is "+max);
-    }
-    
-
-    public static void secondLargest(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
-        int max = Integer.MIN_VALUE;
-        int secmax = Integer.MIN_VALUE;
-        for(int i = 1; i < arr.length; i++){
-            if(arr[i]>max){
-                secmax = max;
-                max = arr[i];
-            }
-            if(arr[i]>secmax && arr[i] != max){
-                secmax = arr[i];
-            }
-        }
-        if(secmax == Integer.MIN_VALUE){
-            System.out.println("-1");
-        }
-        else{
-            System.out.println("Second largest element:"+secmax);
-        }
-    }
-
     public static void sortedArray(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter array size:");
@@ -314,7 +268,7 @@ public class Array{
             }
         }
         System.out.println("After removing duplicates");
-        for(int j = 0; j < i; j++){
+        for(int j = 0; j <= i; j++){
             System.out.print(arr[j]+" ");
         }
     }
@@ -367,4 +321,118 @@ public class Array{
         }
     }
     
+    public static void unionofSorted(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("Enter array size:");
+        int m = sc.nextInt();
+        int arr1[] = new int[m];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr1.length;i++){
+            arr1[i] = sc.nextInt();
+        }
+        int i = 0, j = 0;
+        ArrayList<Integer> union = new ArrayList<>();
+        while(i<n&&j<m){
+            if(arr[i]<=arr1[j]){
+                if(union.isEmpty() || union.get(union.size()-1)!=arr[i]){
+                    union.add(arr[i]);
+                }
+                i++;
+            }
+            else{
+                if(union.isEmpty() || union.get(union.size()-1)!=arr1[j]){
+                    union.add(arr1[j]);
+                }
+                j++;
+            }
+        }
+        while(i<n){
+            if(union.isEmpty() || union.get(union.size()-1)!=arr[i]){
+                union.add(arr[i]);
+            }
+            i++;
+        }
+        while(j<m){
+            if(union.isEmpty() || union.get(union.size()-1)!=arr1[j]){
+                union.add(arr1[j]);
+            }
+            j++;
+        }
+        System.out.println("Union of given two arrays:");
+        for(int nums : union){
+            System.out.print(nums+" ");
+        }
+    }
+
+    public static void majorityBrute(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int flag = 0;
+        for(int i=0; i<arr.length;i++){
+            int count = 0;
+            for(int j=i;j<arr.length;j++){
+                if(arr[i]==arr[j]){
+                    count++;
+                }
+            }
+            if(count > n/2){
+                System.out.println(arr[i]+" is majority element");
+                flag = 1;
+                break;
+            }
+        }
+        if(flag==0){
+            System.out.println("There is no majority element");
+        }
+    }
+
+    public static void mooreVoting(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int candidate = arr[0];
+        int count = 1;
+        for(int i = 1; i<arr.length;i++){
+            if(arr[i]==candidate){
+                count++;
+            }
+            else{
+                count--;
+            }
+            if(count==0){
+                candidate = arr[i];
+                count = 1;
+            }
+        }
+        count = 0;
+        for(int i = 0;i<arr.length;i++){
+            if(arr[i]==candidate){
+                count++;
+            }
+        }
+        if(count > arr.length/2){
+            System.out.println(candidate+" is majority element");
+        }
+        else{
+            System.out.println("No majority element");
+        }
+    }
 }
