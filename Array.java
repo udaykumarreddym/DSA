@@ -13,7 +13,9 @@ public class Array{
         //rotateRightK();
         //unionofSorted();
         //majorityBrute();
-        mooreVoting();
+        //mooreVoting();
+        //dutchNationalFlag();
+        kadanes();
     }
 
 
@@ -434,5 +436,71 @@ public class Array{
         else{
             System.out.println("No majority element");
         }
+    }
+
+    public static void dutchNationalFlag(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int low = 0;
+        int mid = 0;
+        int high = arr.length-1;
+        while(mid<=high){
+            switch (arr[mid]) {
+                case 0:
+                    swap(arr,low,mid);
+                    low++;
+                    mid++;
+                    break;
+                case 1:
+                    mid++;
+                    break;
+                default:
+                    swap(arr,mid,high);
+                    high--;
+                    break;
+            }
+        }
+        System.out.println("After Sorting:");
+        for(int i=0;i<arr.length;i++){
+            System.out.println(arr[i]);
+        }
+    }
+
+    public static void kadanes(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int max = Integer.MIN_VALUE;
+        int sum = 0;
+        int start = 0;
+        int anStart = 0;
+        int anEnd = 0;
+        for(int i=0;i<arr.length;i++){
+            if(sum == 0){
+                start = i;
+            }
+            sum += arr[i];
+            if(sum>max){
+                max = sum;
+                anStart = start;
+                anEnd = i;
+            }
+            if(sum<0){
+                sum = 0;
+            }
+        }
+        System.out.println("Maximum subarray sum: "+max);
+        System.out.println("Starting index: "+anStart+" Ending index: "+anEnd);
     }
 }
