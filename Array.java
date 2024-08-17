@@ -15,7 +15,8 @@ public class Array{
         //majorityBrute();
         //mooreVoting();
         //dutchNationalFlag();
-        kadanes();
+        //kadanes();
+        nextPermutation();
     }
 
 
@@ -502,5 +503,52 @@ public class Array{
         }
         System.out.println("Maximum subarray sum: "+max);
         System.out.println("Starting index: "+anStart+" Ending index: "+anEnd);
+    }
+    public static void nextPermutation(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int ind = -1;
+        for(int i=n-2;i>=0;i--){
+            if(arr[i]<arr[i+1]){
+                ind = i;
+                break;
+            }
+        }
+        if(ind == -1){
+            int start = 0,end = n-1;
+            while(start<end){
+                swap(arr,start,end);
+                start++;
+                end--;
+            }
+            System.out.println("Next permutation:");
+            for(int num : arr){
+                System.out.print(num+" ");
+            }
+        }
+        else{
+            for(int i=n-1;i>ind;i--){
+                if(arr[i]>arr[ind]){
+                    swap(arr,i,ind);
+                    break;
+                }
+            }
+            int start = ind+1, end = n-1;
+            while(start<end){
+                swap(arr,start,end);
+                start++;
+                end--;
+            }
+            System.out.println("Next permutation:");
+            for(int num : arr){
+                System.out.print(num+" ");
+            }
+        }
     }
 }
