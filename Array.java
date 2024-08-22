@@ -15,6 +15,13 @@ public class Array{
         //binarySearch();
         lowerbound();
     }
+
+    public static void swap(int[] arr,int a,int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+    
     public static void sortedArray(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter array size:");
