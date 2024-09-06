@@ -4,7 +4,8 @@ public class BinarySearch {
     public static void main(String[] args) {
         //binarySearch();
         //lowerbound();
-        BinaryS_rotate();
+        //BinaryS_rotate();
+        PeakElement();
     }
 
     public static void binarySearch(){
@@ -102,5 +103,49 @@ public class BinarySearch {
             }
         }
         System.out.println(target+" is found at "+ans+" position");
+    }
+    public static void PeakElement(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        int ans = Peak(arr);
+        if(ans == -1){
+            System.out.println("Peak not found");
+        }
+        else{
+            System.out.println("Peak: "+ans);
+        }
+    }
+    public static int Peak (int[] arr){
+        int n = arr.length;
+        if(n==1){
+            return arr[0];
+        }
+        if(arr[0]>arr[1]){
+            return arr[0];
+        }
+        if(arr[n-1]>arr[n-2]){
+            return arr[n-1];
+        }
+        int low = 1;
+        int high = n-2;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(arr[mid-1]<arr[mid]&&arr[mid]>arr[mid+1]){
+                return arr[mid];
+            }
+            else if(arr[mid]>arr[mid-1]){
+                low = mid+1;
+            }
+            else{
+                high = mid-1;
+            }
+        }
+        return -1;
     }
 }
