@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class BinarySearch {
     public static void main(String[] args) {
         //binarySearch();
-        lowerbound();
+        //lowerbound();
+        BinaryS_rotate();
     }
 
     public static void binarySearch(){
@@ -62,5 +63,44 @@ public class BinarySearch {
             }
         }
         System.out.println("Lower bound found at "+ans+" position");
+    }
+
+    public static void BinaryS_rotate(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[]=new int[n];
+        System.out.println("Enter elements:");
+        for(int i=0;i<arr.length;i++){
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("Enter target:");
+        int target = sc.nextInt();
+        int ans = -1;
+        int low = 0;
+        int high = n-1;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(arr[mid]==target){
+                ans = mid;
+            }
+            if(arr[low]<=arr[mid]){
+                if(arr[low]<=target && target<=arr[mid]){
+                    high = mid-1;
+                }
+                else{
+                    low = mid+1;
+                }
+            }
+            else{
+                if(arr[mid]<=target && target<=arr[high]){
+                    low = mid+1;
+                }
+                else{
+                    high = mid-1;
+                }
+            }
+        }
+        System.out.println(target+" is found at "+ans+" position");
     }
 }
