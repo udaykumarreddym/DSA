@@ -130,7 +130,7 @@ public class Array{
         for(int i=0;i<arr1.length;i++){
             arr1[i] = sc.nextInt();
         }
-        int i = 0, j = 0;
+        int i = 0, j =  0;
         ArrayList<Integer> union = new ArrayList<>();
         while(i<n&&j<m){
             if(arr[i]<=arr1[j]){
