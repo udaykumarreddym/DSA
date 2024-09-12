@@ -5,7 +5,8 @@ public class BinarySearch {
         //binarySearch();
         //lowerbound();
         //BinaryS_rotate();
-        PeakElement();
+        //PeakElement();
+        twoDsearch();
     }
 
     public static void binarySearch(){
@@ -147,5 +148,42 @@ public class BinarySearch {
             }
         }
         return -1;
+    }
+    public static void twoDsearch(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int[][] arr = new int[n][m];
+        System.out.println("Enter elements:");
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        System.out.println("Enter target:");
+        int target = sc.nextInt();
+        int low = 0;
+        int high = n*m-1;
+        int flag = 0;
+        while(low<=high){
+            int mid = (low+high)/2;
+            int row = mid/m;
+            int col = mid%m;
+            if(arr[row][col]==target){
+                System.out.println("Found");
+                flag = 1;
+                break;
+            }
+            else if(arr[row][col]<target){
+                low = mid+1;
+            }
+            else{
+                high = mid-1; 
+            }
+        }
+        if(flag == 0){
+            System.out.println("Not found");
+        }
     }
 }
