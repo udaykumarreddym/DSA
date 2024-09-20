@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Array{
-    public static void main(String[] args){
+    public static void main(StringsExample[] args){
         //sortedArray();
         //removeduplicates();
         //rotateLeftK();

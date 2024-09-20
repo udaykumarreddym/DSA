@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class BinarySearch {
-    public static void main(String[] args) {
+    public static void main(StringsExample[] args) {
         //binarySearch();
         //lowerbound();
         //BinaryS_rotate();
