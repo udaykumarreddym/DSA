@@ -30,6 +30,7 @@ public class LinkedList {
         //head = insertPos(head, x, 7);
         head = insertBeforeVAl(head, x, 3);
         printList(head);
+        
     }
     private static Node convert(int[] a){
         Node head = new Node(a[0]);
