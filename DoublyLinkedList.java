@@ -15,7 +15,6 @@ class Node{
         this.back = null;
     }
 }
-
 public class DoublyLinkedList {
     public static void main(String[] args) {
         int[] a = {3,7,5,8,0,1,2,9,4};
