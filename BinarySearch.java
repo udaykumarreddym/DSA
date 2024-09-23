@@ -149,6 +149,7 @@ public class BinarySearch {
         }
         return -1;
     }
+    
     public static void twoDsearch(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter array size:");
