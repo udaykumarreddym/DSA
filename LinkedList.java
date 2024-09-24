@@ -28,7 +28,8 @@ public class LinkedList {
         //head = insertHead(head, x);
         //head = insertTail(head, x);
         //head = insertPos(head, x, 7);
-        head = insertBeforeVAl(head, x, 3);
+        //head = insertBeforeVAl(head, x, 3);
+        head = reverse(head);
         printList(head);
         
     }
@@ -182,6 +183,19 @@ public class LinkedList {
             }
             temp = temp.next;
         }
+        return head;
+    }
+    public static Node reverse(Node head){
+        Node prev = null;
+        Node curr = head;
+        Node next = null;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
         return head;
     }
 }
