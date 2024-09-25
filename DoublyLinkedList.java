@@ -26,7 +26,8 @@ public class DoublyLinkedList {
         //head = insertHeadBefore(head, 10);
         //head = insertTailBefore(head, 10);
         //head = insertBeforeKth(head,9,10);
-        insertBeforeNode(head.next.next,10);
+        //insertBeforeNode(head.next.next,10);
+        head = reverseDLL(head);
         printList(head);
     }
     private static Node convert2LL(int[] a){
@@ -153,6 +154,20 @@ public class DoublyLinkedList {
         Node newNode = new Node(data,node,prev);
         prev.next = newNode;
         node.back = newNode;
+    }
+    private static Node reverseDLL(Node head){
+        if(head == null || head.next == null){
+            return null;
+        }
+        Node prev = null;
+        Node curr = head;
+        while(curr != null){
+            prev = curr.back;
+            curr.back = curr.next;
+            curr.next = prev;
+            curr = curr.back;
+        }
+        return prev.back;
     }
 }
 
