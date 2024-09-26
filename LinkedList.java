@@ -33,6 +33,7 @@ public class LinkedList {
         printList(head);
         
     }
+    
     private static Node convert(int[] a){
         Node head = new Node(a[0]);
         Node mover = head;
