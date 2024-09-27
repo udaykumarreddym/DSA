@@ -13,7 +13,6 @@ class Node{
         this.next = null;
     }
 }
-
 public class LinkedList {
     public static void main(String[] args) {
         int[] a = {4,2,3,4,5,9,0,3,5};
