@@ -15,7 +15,7 @@ class Node{
 }
 public class LinkedList {
     public static void main(String[] args) {
-        int[] a = {4,2,3,4,5,9,0,3,5};
+        int[] a = {4,2,3,1,5,9,0,8,7};
         Node head = convert(a);
         int x = 10;
         //head = removesHead(head);
@@ -28,9 +28,13 @@ public class LinkedList {
         //head = insertTail(head, x);
         //head = insertPos(head, x, 7);
         //head = insertBeforeVAl(head, x, 3);
-        head = reverse(head);
-        printList(head);
-        
+        //Problems on LinkedList
+        //head = reverse(head);
+        //head = middleNode(head);
+        //printList(head);
+        boolean isTrue = Loop(head);
+        System.out.println(isTrue);
+        //print(head);
     }
     
     private static Node convert(int[] a){
@@ -42,6 +46,18 @@ public class LinkedList {
             mover = mover.next;
         }
         return head;
+    }
+    private static void printList(Node head){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    private static void print(Node head){
+        System.out.println(head.data);
     }
     private static void length(Node head){
         Node temp = head;
@@ -66,14 +82,7 @@ public class LinkedList {
             System.out.println("Not FOUND");
         }
     }
-    private static void printList(Node head){
-        Node temp = head;
-        while(temp != null){
-            System.out.print(temp.data+" ");
-            temp = temp.next;
-        }
-        System.out.println();
-    }
+    
     private static Node removesHead(Node head){
         if (head == null) return head;
         head = head.next;
@@ -185,6 +194,9 @@ public class LinkedList {
         }
         return head;
     }
+
+    //Problems on LinkedList
+    
     public static Node reverse(Node head){
         Node prev = null;
         Node curr = head;
@@ -197,6 +209,30 @@ public class LinkedList {
         }
         head = prev;
         return head;
+    }
+    private static Node middleNode(Node head) {
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    private static boolean Loop(Node head){
+        if(head == null || head.next == null){
+            return false;
+        }
+        Node slow = head;
+        Node fast = head.next;
+        while(fast != null && fast.next != null){
+            if(slow == fast){
+                return true;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return false;
     }
 }
 
