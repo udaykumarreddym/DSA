@@ -32,7 +32,8 @@ public class LinkedList {
         //head = reverse(head);
         //head = middleNode(head);
         //printList(head);
-        boolean isTrue = Loop(head);
+        //boolean isTrue = Loop(head);
+        boolean isTrue = isPalindrome(head);
         System.out.println(isTrue);
         //print(head);
     }
@@ -233,6 +234,30 @@ public class LinkedList {
             fast = fast.next.next;
         }
         return false;
+    }
+    private static boolean isPalindrome(Node head){
+        if (head == null || head.next == null){
+            return true;
+        }
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node newNode = reverse(slow);
+        Node first = head;
+        Node second = newNode;
+        while(second != null){
+            if(first.data != second.data){
+                reverse(newNode);
+                return false;
+            }
+            first = first.next;
+            second = second.next;
+        }
+        reverse(newNode);
+        return true;
     }
 }
 
