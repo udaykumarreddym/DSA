@@ -33,10 +33,12 @@ public class LinkedList {
         //head = middleNode(head);
         //printList(head);
         //boolean isTrue = Loop(head);
-        int len = lengthOfLoop(head);
+        //int len = lengthOfLoop(head);
         //boolean isTrue = isPalindrome(head);
-        System.out.println(len);
-        //print(head);
+        //head = oddEvenList(head);
+        //System.out.println();
+        head = sortList(head);
+        printList(head);
     }
     
     private static Node convert(int[] a){
@@ -279,6 +281,67 @@ public class LinkedList {
         }
         reverse(newNode);
         return true;
+    }
+    private static Node oddEvenList(Node head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        Node odd = head;
+        Node even = head.next;
+        Node evenNode = even;
+        while(even != null && even.next != null){
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenNode;
+        return head;
+    }
+    private static Node sortList(Node head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+        Node mid = getMid(head);
+        Node right = mid.next;
+        mid.next = null;
+        Node left = head;
+        left = sortList(left);
+        right = sortList(right);
+        return merge(left,right);
+    }
+    private static Node getMid(Node head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        Node slow = head;
+        Node fast = head.next;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    private static Node merge(Node left,Node right){
+        Node dummy = new Node(0);
+        Node temp = dummy;
+        while(left != null && right != null){
+            if(left.data < right.data){
+                temp.next = left;
+                left = left.next;
+            }
+            else{
+                temp.next = right;
+                right = right.next;
+            }
+            temp = temp.next;
+        }
+        if (left != null) {
+            temp.next = left;
+        } else {
+            temp.next = right;
+        }
+        return dummy.next;
     }
 }
 
