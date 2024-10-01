@@ -33,8 +33,9 @@ public class LinkedList {
         //head = middleNode(head);
         //printList(head);
         //boolean isTrue = Loop(head);
-        boolean isTrue = isPalindrome(head);
-        System.out.println(isTrue);
+        int len = lengthOfLoop(head);
+        //boolean isTrue = isPalindrome(head);
+        System.out.println(len);
         //print(head);
     }
     
@@ -234,6 +235,26 @@ public class LinkedList {
             fast = fast.next.next;
         }
         return false;
+    }
+    private static int lengthOfLoop(Node head){
+        Node slow=head,fast=head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return lengthLoop(slow);
+            }
+        }
+        return 0;
+    }
+    private static int lengthLoop(Node slow){
+        Node temp = slow;
+        int cnt = 1;
+        while(temp.next != slow){
+            cnt++;
+            temp = temp.next;
+        }
+        return cnt;
     }
     private static boolean isPalindrome(Node head){
         if (head == null || head.next == null){
