@@ -294,6 +294,7 @@ public class Array{
         System.out.println("Maximum subarray sum: "+max);
         System.out.println("Starting index: "+anStart+" Ending index: "+anEnd);
     }
+    
     public static void nextPermutation(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter array size:");
