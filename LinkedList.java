@@ -15,6 +15,7 @@ class Node{
 }
 public class LinkedList {
     public static void main(String[] args) {
+        //int[] a = {1,0,2,0,1,1,0,2,2,1};
         int[] a = {4,2,3,1,5,9,0,8,7};
         Node head = convert(a);
         int x = 10;
@@ -37,7 +38,8 @@ public class LinkedList {
         //boolean isTrue = isPalindrome(head);
         //head = oddEvenList(head);
         //System.out.println();
-        head = sortList(head);
+        //head = sortList(head);
+        head = segregate(head);
         printList(head);
     }
     
@@ -342,6 +344,37 @@ public class LinkedList {
             temp.next = right;
         }
         return dummy.next;
+    }
+    private static Node segregate(Node head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+        Node zerodummy = new Node(0);
+        Node onedummy = new Node(0);
+        Node twodummy = new Node(0);
+        Node zero = zerodummy;
+        Node one = onedummy;
+        Node two = twodummy;
+        Node temp = head;
+        while(temp != null){
+            if(temp.data == 0){
+                zero.next = temp;
+                zero = zero.next;
+            }
+            else if(temp.data == 1){
+                one.next = temp;
+                one = one.next;
+            }
+            else{
+                two.next = temp;
+                two = two.next;
+            }
+            temp = temp.next; 
+        }
+        zero.next = (onedummy.next != null) ? (onedummy.next) : (twodummy.next);
+        one.next = twodummy.next;
+        two.next = null;
+        return zerodummy.next;
     }
 }
 
