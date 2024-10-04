@@ -1,5 +1,7 @@
 
 
+
+
 class Node{
     int data;
     Node next;
@@ -39,7 +41,8 @@ public class LinkedList {
         //head = oddEvenList(head);
         //System.out.println();
         //head = sortList(head);
-        head = segregate(head);
+        //head = segregate(head);
+        head = twoSum(head, head);
         printList(head);
     }
     
@@ -375,6 +378,32 @@ public class LinkedList {
         one.next = twodummy.next;
         two.next = null;
         return zerodummy.next;
+    }
+    private static Node twoSum(Node head1,Node head2){
+        Node dummy = new Node(0);
+        Node curr = dummy;
+        Node t1 = head1;
+        Node t2 = head2;
+        int carry = 0;
+        while(t1 != null || t2 != null){
+            int x = (t1 != null) ? t1.data : 0;
+            int y = (t2 != null) ? t2.data : 0;
+            int sum = carry + x + y;
+            carry = sum/10;
+            Node newNode = new Node(sum % 10);
+            curr.next = newNode;
+            curr = curr.next;
+            if(t1 != null){
+                t1 = t1.next;
+            }
+            if(t2 != null){
+                t2 = t2.next;
+            }
+        }
+        if(carry > 0){
+            curr.next = new Node(carry);
+        }
+        return dummy.next;
     }
 }
 
