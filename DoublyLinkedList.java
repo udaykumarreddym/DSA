@@ -17,7 +17,8 @@ class Node{
 }
 public class DoublyLinkedList {
     public static void main(String[] args) {
-        int[] a = {3,7,5,8,0,1,2,9,4};
+        //int[] a = {3,7,5,8,0,1,2,9,4};
+        int[] a = {1,1,2,3,3,4,5,6,6};
         Node head = convert2LL(a);
         //head = deleteHead(head);
         //head = deleteTail(head);
@@ -28,7 +29,8 @@ public class DoublyLinkedList {
         //head = insertBeforeKth(head,9,10);
         //insertBeforeNode(head.next.next,10);
         //head = reverseDLL(head);
-        head = deleteAllX(head, 9);
+        //head = deleteAllX(head, 9);
+        head = removeDuplicates(head);
         printList(head);
     }
     private static Node convert2LL(int[] a){
@@ -184,6 +186,28 @@ public class DoublyLinkedList {
                 Node next1 = temp.next;
                 if(next1 != null) next1.back = prev1;
                 if(prev1 != null) prev1.next = next1;
+                temp = next1;
+            }
+            else{
+                temp = temp.next;
+            }
+        }
+        return head;
+    }
+
+    private static Node removeDuplicates(Node head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        Node temp = head.next;
+        while(temp != null){
+            Node prev1 = temp.back;
+            Node next1 = temp.next;
+            if(temp.back.data == temp.data){
+                prev1.next = next1;
+                if(next1 != null){
+                    next1.back = prev1;
+                }
                 temp = next1;
             }
             else{
