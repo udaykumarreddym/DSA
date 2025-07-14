@@ -2,10 +2,12 @@ import java.util.Stack;
 
 class Stack_1 {
     public static void main(String[] args) {
-        String infix = "A+B*(C^D-E)";
+        String infix = "(p+q)*(c-d)";
         String postfix = infixToPostfix(infix);
         System.out.println("Infix: " + infix);
         System.out.println("Postfix: " + postfix);
+        String prefix = infixToPrefix(infix);
+        System.out.println("Prefix: " + prefix);
     }
 
     // Priority of operators
@@ -42,6 +44,38 @@ class Stack_1 {
             postfix += s.pop();
         }
         return postfix;
+    }
+
+    public static String infixToPrefix(String infix){
+        Stack<Character> s = new Stack<>();
+        String prefix = "";
+        StringBuilder sb = new StringBuilder(infix);
+        sb.reverse(); // Reverse the infix expression
+        infix = sb.toString();
+        for (int i = 0; i < infix.length(); i++) {
+            char c = infix.charAt(i);
+            if (Character.isLetterOrDigit(c)) {
+                prefix += c;
+            } else if (c == ')') {
+                s.push(c);
+            } else if (c == '(') {
+                while (!s.isEmpty() && s.peek() != ')') {
+                    prefix += s.pop();
+                }
+                if (!s.isEmpty()) s.pop(); // pop ')'
+            } else {
+                while (!s.isEmpty() && priortity(s.peek()) > priortity(c)) {
+                    prefix += s.pop();
+                }
+                s.push(c);
+            }
+        }
+        while (!s.isEmpty()) {
+            prefix += s.pop();
+        }
+        StringBuilder result = new StringBuilder(prefix);
+        result.reverse(); // Reverse the result to get the correct prefix expression
+        return result.toString();
     }
 
     /*
