@@ -1,21 +1,17 @@
 
-
-
-
-class Node{
-    int data;
-    Node next;
-    
-    Node(int data1,Node next1){
-        this.data = data1;
-        this.next = next1;
-    }
-    Node(int data1){
-        this.data = data1;
-        this.next = null;
-    }
-}
 public class LinkedList {
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data1,Node next1){
+            data = data1;
+            next = next1;
+        }
+        Node(int data1){
+            data = data1;
+            next = null;
+        }
+    }
     public static void main(String[] args) {
         //int[] a = {1,0,2,0,1,1,0,2,2,1};
         int[] a = {4,2,3,1,5,9,0,8,7};
