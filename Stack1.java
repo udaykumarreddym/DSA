@@ -2,12 +2,10 @@ import java.util.Stack;
 
 class Stack_1 {
     public static void main(String[] args) {
-        String infix = "(p+q)*(c-d)";
-        String postfix = infixToPostfix(infix);
-        System.out.println("Infix: " + infix);
-        System.out.println("Postfix: " + postfix);
-        String prefix = infixToPrefix(infix);
-        System.out.println("Prefix: " + prefix);
+        String num = "634715";
+        int k = 1;
+        String result = removeKdigits(num, k);
+        System.out.println("Result after removing " + k + " digits: " + result);
     }
 
     // Priority of operators
@@ -76,6 +74,29 @@ class Stack_1 {
         StringBuilder result = new StringBuilder(prefix);
         result.reverse(); // Reverse the result to get the correct prefix expression
         return result.toString();
+    }
+
+    public static String removeKdigits (String num,int k){
+        Stack<Character> stack = new Stack<>();
+        for (char c : num.toCharArray()) {
+            while (k > 0 && !stack.isEmpty() && stack.peek() > c) {
+                stack.pop();
+                k--;
+            }
+            stack.push(c);
+        }
+        while (k > 0 && !stack.isEmpty()) {
+            stack.pop();
+            k--;
+        }
+        StringBuilder result = new StringBuilder();
+        for(char c : stack) {
+            result.append(c);
+        }
+        while(result.length() > 0 && result.charAt(0) == '0') {
+            result.deleteCharAt(0); 
+        }
+        return result.length() == 0 ? "0" : result.toString();
     }
 
     /*
