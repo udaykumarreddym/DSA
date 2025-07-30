@@ -1,35 +1,15 @@
 import java.util.*;
 
 public class Array{
-    public static void main(String[] args){
-        //sortedArray();
-        //removeduplicates();
-        //rotateLeftK();
-        //rotateRightK();
-        //unionofSorted();
-        //majorityBrute();
-        //mooreVoting();
-        //dutchNationalFlag();
-        //kadanes();
-        nextPermutation();
-        
-    }
 
     public static void swap(int[] arr,int a,int b){
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
     }
-    
-    public static void sortedArray(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
+
+    public static void sortedArray(int[] arr){
+        int n = arr.length;
         int flag = 0;
         for(int i = 1; i < n; i++){
             if(arr[i] > arr[(i+1)%n]){
@@ -44,15 +24,7 @@ public class Array{
         }
     }
 
-    public static void removeduplicates(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
+    public static void removeduplicates(int[] arr){
         int i = 0;
         for(int j = 1; j < arr.length; j++){
             if(arr[i] != arr[j]){
@@ -66,17 +38,7 @@ public class Array{
         }
     }
 
-    public static void rotateLeftK(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
-        System.out.print("Enter K value:");
-        int k = sc.nextInt();
+    public static void rotateLeftK(int[] arr, int k){
         for(int i = 1; i <= k; i++){
             int temp = arr[0];
             for(int j = 0; j < arr.length-1; j++){
@@ -90,17 +52,7 @@ public class Array{
         }
     }
 
-    public static void rotateRightK(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
-        System.out.print("Enter K value:");
-        int k = sc.nextInt();
+    public static void rotateRightK(int[] arr, int k){
         for(int i = 1; i <= k; i++){
             int temp = arr[arr.length-1];
             for(int j = arr.length-2; j >= 0; j--){
@@ -113,23 +65,10 @@ public class Array{
             System.out.print(arr[j]+" ");
         }
     }
-    
-    public static void unionofSorted(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
-        System.out.println("Enter array size:");
-        int m = sc.nextInt();
-        int arr1[] = new int[m];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr1.length;i++){
-            arr1[i] = sc.nextInt();
-        }
+
+    public static void unionofSorted(int[] arr, int[] arr1){
+        int n = arr.length;
+        int m = arr1.length;
         int i = 0, j =  0;
         ArrayList<Integer> union = new ArrayList<>();
         while(i<n&&j<m){
@@ -164,15 +103,8 @@ public class Array{
         }
     }
 
-    public static void majorityBrute(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
+    public static void majorityBrute(int[] arr){
+        int n = arr.length;
         int flag = 0;
         for(int i=0; i<arr.length;i++){
             int count = 0;
@@ -192,15 +124,7 @@ public class Array{
         }
     }
 
-    public static void mooreVoting(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
+    public static void mooreVoting(int[] arr){
         int candidate = arr[0];
         int count = 1;
         for(int i = 1; i<arr.length;i++){
@@ -229,15 +153,7 @@ public class Array{
         }
     }
 
-    public static void dutchNationalFlag(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
+    public static void dutchNationalFlag(int[] arr){
         int low = 0;
         int mid = 0;
         int high = arr.length-1;
@@ -263,15 +179,7 @@ public class Array{
         }
     }
 
-    public static void kadanes(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
+    public static void kadanes(int[] arr){
         int max = Integer.MIN_VALUE;
         int sum = 0;
         int start = 0;
@@ -294,16 +202,9 @@ public class Array{
         System.out.println("Maximum subarray sum: "+max);
         System.out.println("Starting index: "+anStart+" Ending index: "+anEnd);
     }
-    
-    public static void nextPermutation(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter array size:");
-        int n = sc.nextInt();
-        int arr[]=new int[n];
-        System.out.println("Enter elements:");
-        for(int i=0;i<arr.length;i++){
-            arr[i] = sc.nextInt();
-        }
+
+    public static void nextPermutation(int[] arr){
+        int n = arr.length;
         int ind = -1;
         for(int i=n-2;i>=0;i--){
             if(arr[i]<arr[i+1]){
@@ -341,5 +242,27 @@ public class Array{
                 System.out.print(num+" ");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter array size:");
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        System.out.println("Enter elements:");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        //sortedArray();
+        //removeduplicates();
+        //rotateLeftK();
+        //rotateRightK();
+        //unionofSorted();
+        //majorityBrute();
+        //mooreVoting();
+        //dutchNationalFlag();
+        //kadanes();
+        nextPermutation(arr);
+
     }
 }
