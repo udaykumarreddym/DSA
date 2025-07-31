@@ -1,38 +1,29 @@
-class Node{
-    int data;
-    Node next;
-    Node back;
-
-    Node(int data1,Node next,Node back){
-        this.data = data1;
-        this.next = next;
-        this.back = back;
-    }
-    
-    Node(int data1){
-        this.data = data1;
-        this.next = null;
-        this.back = null;
-    }
-}
 public class DoublyLinkedList {
-    public static void main(String[] args) {
-        //int[] a = {3,7,5,8,0,1,2,9,4};
-        int[] a = {1,1,2,3,3,4,5,6,6};
-        Node head = convert2LL(a);
-        //head = deleteHead(head);
-        //head = deleteTail(head);
-        //head = deleteKth(head,5);
-        //deleteNode(head.next.next.next);
-        //head = insertHeadBefore(head, 10);
-        //head = insertTailBefore(head, 10);
-        //head = insertBeforeKth(head,9,10);
-        //insertBeforeNode(head.next.next,10);
-        //head = reverseDLL(head);
-        //head = deleteAllX(head, 9);
-        head = removeDuplicates(head);
-        printList(head);
+
+    static class Node {
+        int data;
+        Node next;
+        Node back;
+        Node(int data1, Node next1, Node back1) {
+            data = data1;
+            next = next1;
+            back = back1;
+        }
+        Node(int data1) {
+            data = data1;
+            next = null;
+            back = null;
+        }
     }
+
+    private static void printList(Node head) {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+
     private static Node convert2LL(int[] a){
         Node head = new Node(a[0]);
         Node prev = head;
@@ -43,13 +34,7 @@ public class DoublyLinkedList {
         }
         return head;
     }
-    private static void printList(Node head){
-        Node temp = head;
-        while(temp != null){
-            System.out.print(temp.data+" ");
-            temp = temp.next;
-        } 
-    }
+
     private static Node deleteHead(Node head){
         if(head == null || head.next == null){
             return null;
@@ -60,6 +45,7 @@ public class DoublyLinkedList {
         prev.next = null;
         return head;
     }
+
     private static Node deleteTail(Node head){
         if(head == null || head.next == null){
             return null;
@@ -73,6 +59,7 @@ public class DoublyLinkedList {
         tail.back = null;
         return head;
     }
+
     private static Node deleteKth(Node head,int k){
         int cnt = 0;
         Node temp = head;
@@ -100,6 +87,7 @@ public class DoublyLinkedList {
         temp.back = null;
         return head;
     }
+
     private static void deleteNode(Node temp){
         Node prev = temp.back;
         Node front = temp.next;
@@ -114,11 +102,13 @@ public class DoublyLinkedList {
         temp.back = null;
         return;
     }
+
     private static Node insertHeadBefore(Node head,int data){
         Node newNode = new Node(data,head,null);
         head.back = newNode;
         return newNode;
     }
+
     private static Node insertTailBefore(Node head,int data){
         if(head.next == null){
             return insertHeadBefore(head, data);
@@ -133,6 +123,7 @@ public class DoublyLinkedList {
         tail.back = newNode;
         return head;
     }
+
     private static Node insertBeforeKth(Node head,int k,int data){
         if(k == 1){
             return insertHeadBefore(head, data);
@@ -152,12 +143,14 @@ public class DoublyLinkedList {
         temp.back = newNode;
         return head;
     } 
+
     private static void insertBeforeNode(Node node,int data){
         Node prev = node.back;
         Node newNode = new Node(data,node,prev);
         prev.next = newNode;
         node.back = newNode;
     }
+
     private static Node reverseDLL(Node head){
         if(head == null || head.next == null){
             return null;
@@ -215,6 +208,24 @@ public class DoublyLinkedList {
             }
         }
         return head;
+    }
+
+    public static void main(String[] args) {
+        //int[] a = {3,7,5,8,0,1,2,9,4};
+        int[] a = {1, 1, 2, 3, 3, 4, 5, 6, 6};
+        Node head = convert2LL(a);
+        //head = deleteHead(head);
+        //head = deleteTail(head);
+        //head = deleteKth(head,5);
+        //deleteNode(head.next.next.next);
+        //head = insertHeadBefore(head, 10);
+        //head = insertTailBefore(head, 10);
+        //head = insertBeforeKth(head,9,10);
+        //insertBeforeNode(head.next.next,10);
+        //head = reverseDLL(head);
+        //head = deleteAllX(head, 9);
+        head = removeDuplicates(head);
+        printList(head);
     }
 }
 
