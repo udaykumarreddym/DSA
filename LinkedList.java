@@ -1,5 +1,6 @@
 
 public class LinkedList {
+    
     public static class Node{
         int data;
         Node next;
@@ -12,36 +13,7 @@ public class LinkedList {
             next = null;
         }
     }
-    public static void main(String[] args) {
-        //int[] a = {1,0,2,0,1,1,0,2,2,1};
-        int[] a = {4,2,3,1,5,9,0,8,7};
-        Node head = convert(a);
-        int x = 10;
-        //head = removesHead(head);
-        //head = removesTail(head);
-        //head = deleteK(head, x);
-        //head = deleteEl(head, x);
-        //search(head,x);
-        //length(head);
-        //head = insertHead(head, x);
-        //head = insertTail(head, x);
-        //head = insertPos(head, x, 7);
-        //head = insertBeforeVAl(head, x, 3);
-        //Problems on LinkedList
-        //head = reverse(head);
-        //head = middleNode(head);
-        //printList(head);
-        //boolean isTrue = Loop(head);
-        //int len = lengthOfLoop(head);
-        //boolean isTrue = isPalindrome(head);
-        //head = oddEvenList(head);
-        //System.out.println();
-        //head = sortList(head);
-        //head = segregate(head);
-        head = twoSum(head, head);
-        printList(head);
-    }
-    
+
     private static Node convert(int[] a){
         Node head = new Node(a[0]);
         Node mover = head;
@@ -215,15 +187,7 @@ public class LinkedList {
         head = prev;
         return head;
     }
-    private static Node middleNode(Node head) {
-        Node slow = head;
-        Node fast = head;
-        while(fast != null && fast.next != null){
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        return slow;
-    }
+    
     private static boolean Loop(Node head){
         if(head == null || head.next == null){
             return false;
@@ -400,6 +364,45 @@ public class LinkedList {
             curr.next = new Node(carry);
         }
         return dummy.next;
+    }
+    private static Node middleNode(Node head) {
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    private static Node loopbreak(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                Node entry = head;
+                Node prev =  null;
+                while(slow != entry){
+                    prev = entry;
+                    slow = slow.next;
+                    entry = entry.next;
+                }
+                prev.next = null;
+            }
+        }
+        return head;
+    }
+    public static void main(String[] args) {
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = new Node(4);
+        head.next.next.next.next = new Node(5);
+        head.next.next.next.next.next = new Node(6,head.next.next);
+        head = loopbreak(head);
+        printList(head);
     }
 }
 
