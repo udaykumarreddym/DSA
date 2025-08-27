@@ -1,18 +1,22 @@
 import java.util.Stack;
 
 class Stack_1 {
-    public static void main(String[] args) {
-        String num = "634715";
-        int k = 1;
-        String result = removeKdigits(num, k);
-        System.out.println("Result after removing " + k + " digits: " + result);
-    }
 
     // Priority of operators
     public static int priortity(char c) {
-        if (c == '+' || c == '-') return 1;
-        else if (c == '*' || c == '/') return 2;
-        else if (c == '^') return 3;
+        switch (c) {
+            case '+', '-' -> {
+                return 1;
+            }
+            case '*', '/' -> {
+                return 2;
+            }
+            case '^' -> {
+                return 3;
+            }
+            default -> {
+            }
+        }
         return -1;
     }
 
@@ -30,7 +34,7 @@ class Stack_1 {
                 while (!s.isEmpty() && s.peek() != '(') {
                     postfix += s.pop();
                 }
-                if (!s.isEmpty()) s.pop(); // pop '('
+                if (!s.isEmpty()) s.pop(); 
             } else {
                 while (!s.isEmpty() && priortity(s.peek()) >= priortity(c)) {
                     postfix += s.pop();
@@ -48,7 +52,7 @@ class Stack_1 {
         Stack<Character> s = new Stack<>();
         String prefix = "";
         StringBuilder sb = new StringBuilder(infix);
-        sb.reverse(); // Reverse the infix expression
+        sb.reverse(); 
         infix = sb.toString();
         for (int i = 0; i < infix.length(); i++) {
             char c = infix.charAt(i);
@@ -60,7 +64,7 @@ class Stack_1 {
                 while (!s.isEmpty() && s.peek() != ')') {
                     prefix += s.pop();
                 }
-                if (!s.isEmpty()) s.pop(); // pop ')'
+                if (!s.isEmpty()) s.pop();
             } else {
                 while (!s.isEmpty() && priortity(s.peek()) > priortity(c)) {
                     prefix += s.pop();
@@ -72,7 +76,7 @@ class Stack_1 {
             prefix += s.pop();
         }
         StringBuilder result = new StringBuilder(prefix);
-        result.reverse(); // Reverse the result to get the correct prefix expression
+        result.reverse(); 
         return result.toString();
     }
 
@@ -98,6 +102,31 @@ class Stack_1 {
         }
         return result.length() == 0 ? "0" : result.toString();
     }
+
+    public static void nextGreater(int[] arr){
+        Stack<Integer> st = new Stack<>();
+        for(int i=arr.length-1;i>=0;i--){
+            while(!st.isEmpty() && arr[st.peek()] <= arr[i]){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                System.out.print("-1 ");
+            }else{
+                System.out.print(arr[st.peek()] + " ");
+            }
+            st.push(i);
+        }
+    }
+
+    //Outer loop 0 -> n and inner condition same [Previous Greater]
+    //Outer loop same and inner condition >= [Next Smaller]
+    //Outer loop 0 -> n and inner condition >= [Previous Smaller]
+
+    public static void main(String[] args) {
+        int[] arr = {6,8,1,2,3,0,5};
+        nextGreater(arr);
+    }
+}
 
     /*
     // Stack using Array
@@ -297,4 +326,3 @@ class Stack_1 {
         }
     }
     */
-}
