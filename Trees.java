@@ -152,6 +152,56 @@ public class Trees {
         }
     }
 
+
+    private static int height(TNode root){
+        if(root == null){
+            return 0;
+        }
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    private static int balancedTree(TNode root){
+        if(root == null){
+            return 0;
+        }
+        int left = balancedTree(root.left);
+        if(left == -1) return -1;
+        int right = balancedTree(root.right);
+        if(right == -1) return -1;
+        if(Math.abs(left - right) > 1) return -1;
+        return Math.max(left, right) + 1;
+    }
+    static int maxDiameter = 0;
+    private static int diameterOfTree(TNode root){
+        diameter(root);
+        return maxDiameter;
+    }
+    private static int diameter(TNode root){
+        if(root == null){
+            return 0;
+        }
+        int leftHeight = diameter(root.left);
+        int rightHeight = diameter(root.right);
+        maxDiameter = Math.max(maxDiameter, leftHeight + rightHeight);
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+    static int maxpsum = Integer.MIN_VALUE;
+    private static int maxPathsum(TNode root){
+        maxPath(root);
+        return maxpsum;
+    }
+    private static int maxPath(TNode root){
+        if(root == null){
+            return 0;
+        }
+        int left = Math.max(0, maxPath(root.left));
+        int right = Math.max(0, maxPath(root.right));
+        maxpsum = Math.max(maxpsum, left + right + root.data);
+        return root.data + Math.max(left, right);
+    }
     public static void main(String[] args) {
         root = new TNode(10);
         root.left = new TNode(20);
@@ -160,14 +210,19 @@ public class Trees {
         root.left.right = new TNode(50);
         root.right.left = new TNode(60);
         root.right.right = new TNode(70);
-        System.out.println("Tree elements in preorder:");
-        preorder(root);
-        System.out.println("\nTree elements in inorder:");
-        inorder(root);
-        System.out.println("\nTree elements in postorder:");
-        postorder(root);
+        root.left.left.left = new TNode(80);
+        // System.out.println("Tree elements in preorder:");
+        // preorder(root);
+        // System.out.println("\nTree elements in inorder:");
+        // inorder(root);
+        // System.out.println("\nTree elements in postorder:");
+        // postorder(root);
         // System.out.println("Tree elements in level order:");
         // levelOrderTraversal();
         // recLevelorder(root);
+        System.out.println("Height of tree: "+height(root));
+        System.out.println("Is balanced tree: "+(balancedTree(root)!=-1));
+        System.out.println("Diameter of tree: "+diameterOfTree(root));
+        System.out.println("Max path sum of tree: "+maxPathsum(root));
     }
 }
